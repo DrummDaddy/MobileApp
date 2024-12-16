@@ -9,7 +9,7 @@ import (
 
 // Подключение к PostgreSQL
 func Connect() (*sql.DB, error) {
-	connStr := "user=yourusername dbname=yourdbname sslmode=disable pasword=yourpassword"
+	connStr := "user=postgres dbname=mobileapp_utf8 sslmode=disable password=159357 client_encoding=UTF8"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		return nil, fmt.Errorf("error to connecting to database %v", err)

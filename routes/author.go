@@ -18,9 +18,9 @@ func RegisterHendler(db *sql.DB) http.HandlerFunc {
 
 		// Вставка пользователя в бд
 		err = db.QueryRow(
-			"INSERT INTO users (username, full_name, email) VALUES($1,$2,$3) RETURNING id",
+			"INSERT INTO users (username, full_name, email) VALUES($1,$2,$3) RETURNING id, created_at",
 			user.Username, user.Fullname, user.Email,
-		).Scan(&user.ID)
+		).Scan(&user.ID, &user.CreatedAt)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
